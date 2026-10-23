@@ -1,6 +1,9 @@
 package frc.robot.subsystems.intake;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
+import java.util.logging.LogManager;
+
 import org.littletonrobotics.junction.Logger;
 
 public class Intake extends SubsystemBase {
@@ -20,6 +23,7 @@ public class Intake extends SubsystemBase {
     intakeInterface.setIntakeSpeed(speed);
     Logger.recordOutput("OTBIntake/IntakeSpeed", speed);
   }
+  LogManager
 
   @Override
   public void periodic() {
