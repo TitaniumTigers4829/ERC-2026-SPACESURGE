@@ -14,7 +14,7 @@ public class PivotSubsystem extends SubsystemBase {
     pivotMotor = new PWMTalonFX(Constants.PIVOT_MOTOR_ID_3);
   }
   @Override
-  public void pivotCommand(double leftSpeed, double rightSpeed) {
-    
+  public void pivotCommand(double speed) {
+    pivotMotor.set(speed);
   }
 }
