@@ -6,7 +6,7 @@ package frc.robot.commands;
 
 
 import java.util.function.DoubleSupplier;
-
+import frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /** An example command that uses an example subsystem. */
@@ -20,8 +20,8 @@ public class DriveCommand extends Command {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public DriveCommand() {
-    
+  public DriveCommand(DriveSubsystem subsystem, DoubleSupplier leftJoystickX, DoubleSupplier rightJoystickY) {
+    this.subsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements();
   }
@@ -32,7 +32,9 @@ public class DriveCommand extends Command {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    subsystem.Drive(leftDoubleSupplier.getAsDouble(), rightDoubleSupplier.getAsDouble());
+  }
 
   // Called once the command ends or is interrupted.
   @Override

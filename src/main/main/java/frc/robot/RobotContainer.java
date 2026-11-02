@@ -29,7 +29,7 @@ public class RobotContainer {
     // Configure the trigger bindings
     configureBindings();
   }
-  
+
   /**
    * Use this method to define your trigger->command mappings. Triggers can be created via the
    * {@link Trigger#Trigger(java.util.function.BooleanSupplier)} constructor with an arbitrary
@@ -41,9 +41,6 @@ public class RobotContainer {
    */
   private void configureBindings() {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-    
-    
-
     
   }
 
