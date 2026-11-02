@@ -12,7 +12,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 /** An example command that uses an example subsystem. */
 public class DriveCommand extends Command {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-
+  DoubleSupplier leftDoubleSupplier;
+  DoubleSupplier rightDoubleSupplier;
 
   /**
    * Creates a new ExampleCommand.
