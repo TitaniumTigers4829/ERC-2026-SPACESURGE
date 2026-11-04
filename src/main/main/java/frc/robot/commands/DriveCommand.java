@@ -6,12 +6,13 @@ package frc.robot.commands;
 
 
 import java.util.function.DoubleSupplier;
-import frc.robot.subsystems;
+import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /** An example command that uses an example subsystem. */
 public class DriveCommand extends Command {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
+  private final DriveSubsystem subsystem;
   DoubleSupplier leftDoubleSupplier;
   DoubleSupplier rightDoubleSupplier;
 
@@ -22,8 +23,10 @@ public class DriveCommand extends Command {
    */
   public DriveCommand(DriveSubsystem subsystem, DoubleSupplier leftJoystickX, DoubleSupplier rightJoystickY) {
     this.subsystem = subsystem;
+    this.leftDoubleSupplier = leftJoystickX;
+    this.rightDoubleSupplier = rightJoystickY;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements();
+    addRequirements(subsystem);
   }
 
   // Called when the command is initially scheduled.
