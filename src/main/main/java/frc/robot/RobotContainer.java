@@ -41,7 +41,8 @@ public class RobotContainer {
    */
   private void configureBindings() {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-    
+    Command driveCommand = new DriveCommand(driveSubsystem, driverController::getLeftX , driverController::getRightY);
+    driveSubsystem.setDefaultCommand(driveCommand);
   }
 
   
