@@ -14,5 +14,6 @@ package frc.robot;
  */
 public final class Constants {
     public static double INTAKE_MOTOR_ID_ONE = 0-9;
-    public static double INTAKE_STATOR_LIMIT = 0-9;
+    public static double INTAKE_STATOR_LIMIT = 0;
+    public static double RIO_SIGNAL_FREQUENCY = 100;
 }

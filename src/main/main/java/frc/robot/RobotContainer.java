@@ -20,6 +20,7 @@ import java.util.function.DoubleSupplier;
  * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer {
+  public final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
   private final CommandXboxController driverController = new CommandXboxController(0);
   // The robot's subsystems and commands are defined here...
   
@@ -41,7 +42,7 @@ public class RobotContainer {
    */
   private void configureBindings() {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-    
+    driverController.rightBumper().whileTrue(new IntakeCommand(intakeSubsystem));
     
 
     
