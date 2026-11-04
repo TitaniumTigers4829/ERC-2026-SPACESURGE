@@ -7,6 +7,7 @@ package frc.robot;
 
 import frc.robot.Autos;
 import frc.robot.commands.DriveCommand;
+import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -23,7 +24,7 @@ public class RobotContainer {
   public final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
   private final CommandXboxController driverController = new CommandXboxController(0);
   // The robot's subsystems and commands are defined here...
-  
+  private final DriveSubsystem driveSubsystem = new DriveSubsystem();
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -43,9 +44,8 @@ public class RobotContainer {
   private void configureBindings() {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
     driverController.rightBumper().whileTrue(new IntakeCommand(intakeSubsystem));
-    
-
-    
+    Command driveCommand = new DriveCommand(driveSubsystem, driverController::getLeftX , driverController::getRightY);
+    driveSubsystem.setDefaultCommand(driveCommand);
   }
 
   
