@@ -12,9 +12,4 @@ public class DriveConstants extends SubsystemBase {
     final int DRIVE_MOTOR_1_ID = 0-9;
     final int DRIVE_MOTOR_2_ID = 0-9;
   }
-
-  @Override
-  public void periodic() {
-
-  }
 }
