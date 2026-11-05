@@ -178,3 +178,6 @@ logs/
 ctre_sim/
 
 .vscode
+
+# Zed (machine-specific paths; each teammate runs `wpilib init`)
+.zed/
