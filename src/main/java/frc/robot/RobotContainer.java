@@ -4,15 +4,11 @@
 
 package frc.robot;
 
-
-import frc.robot.Autos;
-import frc.robot.commands.DriveCommand;
-import frc.robot.subsystems.DriveSubsystem;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import java.util.function.DoubleSupplier;
+import frc.robot.commands.DriveCommand;
+import frc.robot.subsystems.DriveSubsystem;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -21,10 +17,11 @@ import java.util.function.DoubleSupplier;
  * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer {
+  public final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
   private final CommandXboxController driverController = new CommandXboxController(0);
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem driveSubsystem = new DriveSubsystem();
-  
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
@@ -42,12 +39,12 @@ public class RobotContainer {
    */
   private void configureBindings() {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-    Command driveCommand = new DriveCommand(driveSubsystem, driverController::getLeftX , driverController::getRightY);
+    driverController.rightBumper().whileTrue(new IntakeCommand(intakeSubsystem));
+    Command driveCommand =
+        new DriveCommand(driveSubsystem, driverController::getLeftX, driverController::getRightY);
     driveSubsystem.setDefaultCommand(driveCommand);
   }
 
-  
-  
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
@@ -60,5 +57,5 @@ public class RobotContainer {
   }
   // Simple JoystickUtil helper to avoid unresolved reference to JoystickUtil
   // Provides minimal implementations used in this file.
-  
+
 }

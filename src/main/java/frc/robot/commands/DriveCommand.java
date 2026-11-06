@@ -4,15 +4,15 @@
 
 package frc.robot.commands;
 
-
-import java.util.function.DoubleSupplier;
-import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.DriveSubsystem;
+import java.util.function.DoubleSupplier;
 
 /** An example command that uses an example subsystem. */
 public class DriveCommand extends Command {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DriveSubsystem subsystem;
+
   DoubleSupplier leftDoubleSupplier;
   DoubleSupplier rightDoubleSupplier;
 
@@ -21,7 +21,8 @@ public class DriveCommand extends Command {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public DriveCommand(DriveSubsystem subsystem, DoubleSupplier leftJoystickX, DoubleSupplier rightJoystickY) {
+  public DriveCommand(
+      DriveSubsystem subsystem, DoubleSupplier leftJoystickX, DoubleSupplier rightJoystickY) {
     this.subsystem = subsystem;
     this.leftDoubleSupplier = leftJoystickX;
     this.rightDoubleSupplier = rightJoystickY;
