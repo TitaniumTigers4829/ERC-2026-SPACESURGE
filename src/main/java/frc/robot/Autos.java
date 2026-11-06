@@ -4,8 +4,6 @@
 
 package frc.robot;
 
-
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 
 public final class Autos {
@@ -13,8 +11,6 @@ public final class Autos {
   public static Command exampleAuto() {
     return null;
   }
-
-
 
   private Autos() {
     throw new UnsupportedOperationException("This is a utility class!");
