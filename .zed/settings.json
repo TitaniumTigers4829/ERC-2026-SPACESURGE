@@ -1,0 +1,88 @@
+// Written by zed-wpilib (`wpilib init`). Safe to edit; re-running init updates the WPILib entries.
+{
+  "lsp": {
+    "jdtls": {
+      "settings": {
+        "java_home": "/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home"
+      },
+      "initialization_options": {
+        "settings": {
+          "java": {
+            "configuration": {
+              "updateBuildConfiguration": "automatic",
+              "runtimes": [
+                {
+                  "name": "JavaSE-17",
+                  "path": "/Users/landonrogers/wpilib/2026/jdk",
+                  "default": true
+                }
+              ]
+            },
+            "import": {
+              "gradle": {
+                "enabled": true,
+                "wrapper": {
+                  "enabled": true
+                },
+                "java": {
+                  "home": "/Users/landonrogers/wpilib/2026/jdk"
+                },
+                "annotationProcessing": {
+                  "enabled": false
+                }
+              }
+            },
+            "completion": {
+              "favoriteStaticMembers": [
+                "org.junit.Assert.*",
+                "org.junit.Assume.*",
+                "org.junit.jupiter.api.Assertions.*",
+                "org.junit.jupiter.api.Assumptions.*",
+                "org.junit.jupiter.api.DynamicContainer.*",
+                "org.junit.jupiter.api.DynamicTest.*",
+                "org.mockito.Mockito.*",
+                "org.mockito.ArgumentMatchers.*",
+                "org.mockito.Answers.*",
+                "edu.wpi.first.units.Units.*"
+              ],
+              "filteredTypes": [
+                "java.awt.*",
+                "com.sun.*",
+                "sun.*",
+                "jdk.*",
+                "org.graalvm.*",
+                "io.micrometer.shaded.*",
+                "java.beans.*",
+                "java.util.Base64.*",
+                "java.util.Timer",
+                "java.sql.*",
+                "javax.swing.*",
+                "javax.management.*",
+                "javax.smartcardio.*",
+                "edu.wpi.first.math.proto.*",
+                "edu.wpi.first.math.**.proto.*",
+                "edu.wpi.first.math.**.struct.*"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "gradle-language-server": {
+      "settings": {
+        "java_home": "/Users/landonrogers/wpilib/2026/jdk",
+        "gradleWrapperEnabled": true
+      }
+    }
+  },
+  "file_scan_exclusions": [
+    "**/.git",
+    "**/.DS_Store",
+    "**/bin",
+    "**/.classpath",
+    "**/.project",
+    "**/.settings",
+    "**/.factorypath",
+    "**/*~"
+  ]
+}
