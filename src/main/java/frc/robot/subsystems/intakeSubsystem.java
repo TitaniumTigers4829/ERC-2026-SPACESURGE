@@ -15,16 +15,15 @@ import frc.robot.Constants;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class intakeSubsystem extends InstantCommand {
+public class IntakeSubsystem extends InstantCommand {
   // Make motors, create status signal objects for stator current
   private final PWMTalonFX intakeMotorOne;
   private final StatusSignal<Current> intakeStatorCurrent;
 
-  private final PWMTalonFXConfiguration intakeConfig = new PWMTalonFXConfiguration();
 
-  public intakeSubsystem() {
+  public IntakeSubsystem() {
     // Add configs for motors, configure stator current status signals
-    intakeMotorOne = new TalonFX(Constants.INTAKE_MOTOR_ID_ONE); // Replace num with motor id
+    intakeMotorOne = new PWMTalonFX(Constants.INTAKE_MOTOR_ID_ONE); // Replace num with motor id
     intakeStatorCurrent =
         intakeMotorOne
             .getVoltage(); // Use addRequirements() here to declare subsystem dependencies.
