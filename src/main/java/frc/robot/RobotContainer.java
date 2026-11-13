@@ -41,7 +41,7 @@ public class RobotContainer {
    */
   private void configureBindings() {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-    driverController.rightBumper().whileTrue(new IntakeCommand(intakeSubsystem));
+    driverController.rightBumper().whileTrue(new IntakeCommand());
     Command driveCommand =
         new DriveCommand(driveSubsystem, driverController::getLeftX, driverController::getRightY);
     driveSubsystem.setDefaultCommand(driveCommand);

@@ -17,8 +17,8 @@ import frc.robot.Constants;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class intakeSubsystem extends InstantCommand {
   // Make motors, create status signal objects for stator current
-  private final PWMTalonFX intakeMotorOne;
-  private final StatusSignal<Current> intakeStatorCurrent;
+  private PWMTalonFX intakeMotorOne;
+  private double intakeStatorCurrent;
 
 
   public void IntakeSubsystem() {
@@ -27,28 +27,28 @@ public class intakeSubsystem extends InstantCommand {
     intakeStatorCurrent =
         intakeMotorOne
             .getVoltage(); // Use addRequirements() here to declare subsystem dependencies.
-    BaseStatusSignal.setUpdateFrequencyForAll(Constants.RIO_SIGNAL_FREQUENCY, intakeStatorCurrent);
-    intakeMotorOne.optimizeBusUtilization();
+    // BaseStatusSignal.setUpdateFrequencyForAll(Constants.RIO_SIGNAL_FREQUENCY, intakeStatorCurrent);
+    // intakeMotorOne.optimizeBusUtilization();
     // set a value of hertz to get the stator current(higher = faster)
 
   }
 
   // Called when the command is initially scheduled.
   // update input, all update methods (intake in and intake out(shoot))
-  public void updateInputs() {
-    intakeStatorCurrent.refresh();
-  }
+  // public void updateInputs() {
+  //   intakeStatorCurrent.refresh();
+  // }
 
   public void setIntakeSpeed(double speed) {
     intakeMotorOne.set(speed);
-    if (intakeStatorCurrent.refresh() > Constants.INTAKE_STATOR_LIMIT) {
+    if (intakeStatorCurrent > Constants.INTAKE_STATOR_LIMIT) {
       intakeMotorOne.set(0);
     }
   }
 
-  public void periodic() {
-    updateInputs();
-  }
+  // public void periodic() {
+  //   updateInputs();
+  // }
 
   public void Outtake(double speed) {
     intakeMotorOne.set(speed);
