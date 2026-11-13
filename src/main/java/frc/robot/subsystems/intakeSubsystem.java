@@ -4,10 +4,10 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix6.BaseStatusSignal;
-import com.ctre.phoenix6.StatusSignal;
-import com.ctre.phoenix6.hardware.TalonFX;
-import edu.wpi.first.units.measure.Current;
+//import com.ctre.phoenix6.BaseStatusSignal;
+//import com.ctre.phoenix6.StatusSignal;
+//import com.ctre.phoenix6.hardware.TalonFX;
+//import edu.wpi.first.units.measure.Current;
 import edu.wpi.first.wpilibj.motorcontrol.PWMTalonFX;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.Constants;
@@ -15,17 +15,17 @@ import frc.robot.Constants;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class intakeSubsystem extends InstantCommand {
+public class IntakeSubsystem extends InstantCommand {
   // Make motors, create status signal objects for stator current
-  private PWMTalonFX intakeMotorOne;
+  private PWMTalonFX intakeMotor;
   private double intakeStatorCurrent;
 
 
-  public void IntakeSubsystem() {
+  public IntakeSubsystem() {
     // Add configs for motors, configure stator current status signals
-    intakeMotorOne = new PWMTalonFX(Constants.INTAKE_MOTOR_ID_ONE); // Replace num with motor id
+    intakeMotor = new PWMTalonFX(Constants.INTAKE_MOTOR_ID); // Replace num with motor id
     intakeStatorCurrent =
-        intakeMotorOne
+        intakeMotor
             .getVoltage(); // Use addRequirements() here to declare subsystem dependencies.
     // BaseStatusSignal.setUpdateFrequencyForAll(Constants.RIO_SIGNAL_FREQUENCY, intakeStatorCurrent);
     // intakeMotorOne.optimizeBusUtilization();
@@ -40,9 +40,9 @@ public class intakeSubsystem extends InstantCommand {
   // }
 
   public void setIntakeSpeed(double speed) {
-    intakeMotorOne.set(speed);
+    intakeMotor.set(speed);
     if (intakeStatorCurrent > Constants.INTAKE_STATOR_LIMIT) {
-      intakeMotorOne.set(0);
+      intakeMotor.set(0);
     }
   }
 
@@ -51,6 +51,6 @@ public class intakeSubsystem extends InstantCommand {
   // }
 
   public void Outtake(double speed) {
-    intakeMotorOne.set(speed);
+    intakeMotor.set(speed);
   }
 }
