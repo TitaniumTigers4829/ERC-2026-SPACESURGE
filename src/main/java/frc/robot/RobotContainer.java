@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.PivotCommand;
+import frc.robot.commands.ShootCommand;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.PivotSubsystem;
@@ -51,6 +52,7 @@ public class RobotContainer {
     driverController.povUp().whileTrue(new PivotCommand(pivotSubsystem, Math.PI/2));
     driverController.povDown().whileTrue(new PivotCommand(pivotSubsystem, 0));
     
+    driverController.x().whileTrue(new ShootCommand());
   }
 
   /**

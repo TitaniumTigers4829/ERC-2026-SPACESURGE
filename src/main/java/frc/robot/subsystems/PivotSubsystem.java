@@ -20,9 +20,10 @@ public class PivotSubsystem extends SubsystemBase {
   /** Creates a new PivotSubsystem. */
   public TalonFXS pivotMotor;
 
-  // public PIDController pidController = new PIDController(Constants.PIVOT_P, Constants.PIVOT_I, Constants.PIVOT_D);
-  
-  public MotionMagicVoltage requestVoltage = new MotionMagicVoltage(0.0); 
+  // public PIDController pidController = new PIDController(Constants.PIVOT_P, Constants.PIVOT_I,
+  // Constants.PIVOT_D);
+
+  public MotionMagicVoltage requestVoltage = new MotionMagicVoltage(0.0);
   public StatusSignal<Angle> angle;
   public TalonFXSConfiguration pivotConfig;
 
@@ -41,6 +42,4 @@ public class PivotSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Pivot Angle", angle.getValueAsDouble());
     SmartDashboard.putNumber("Target Angle", targetAngle);
   }
-
-  
 }
