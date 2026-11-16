@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.subsystems.intakeSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -19,7 +19,7 @@ import frc.robot.subsystems.intakeSubsystem;
  * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer {
-  public final intakeSubsystem intakeSubsystem = new intakeSubsystem();
+  public final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
   private final CommandXboxController driverController = new CommandXboxController(0);
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem driveSubsystem = new DriveSubsystem();
@@ -41,7 +41,7 @@ public class RobotContainer {
    */
   private void configureBindings() {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-    driverController.rightBumper().whileTrue(new IntakeCommand(intakeSubsystem));
+    driverController.rightBumper().whileTrue(new IntakeCommand());
     Command driveCommand =
         new DriveCommand(driveSubsystem, driverController::getLeftX, driverController::getRightY);
     driveSubsystem.setDefaultCommand(driveCommand);
