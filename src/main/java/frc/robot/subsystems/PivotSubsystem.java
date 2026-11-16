@@ -5,28 +5,36 @@
 package frc.robot.subsystems;
 
 
+import com.ctre.phoenix6.StatusSignal;
+import com.ctre.phoenix6.configs.TalonFXSConfiguration;
 import com.ctre.phoenix6.controls.MotionMagicVoltage;
-import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.wpilibj.motorcontrol.PWMTalonFX;
+import com.ctre.phoenix6.hardware.TalonFXS;
+import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class PivotSubsystem extends SubsystemBase {
   /** Creates a new PivotSubsystem. */
-  public PWMTalonFX pivotMotor;
+  public TalonFXS pivotMotor;
 
-  public PIDController pidController = new PIDController(Constants.PIVOT_P, Constants.PIVOT_I, Constants.PIVOT_D);
+  // public PIDController pidController = new PIDController(Constants.PIVOT_P, Constants.PIVOT_I, Constants.PIVOT_D);
   
   public MotionMagicVoltage requestVoltage = new MotionMagicVoltage(0.0); 
-  public double angle;
+  public StatusSignal<Angle> angle;
+  public TalonFXSConfiguration pivotConfig;
 
   public PivotSubsystem() {
-    pivotMotor = new PWMTalonFX(Constants.PIVOT_MOTOR_ID);
-    angle = pivotMotor.get
+    pivotConfig.Slot0.kP = Constants.PIVOT_P;
+    pivotConfig.Slot0.kP = Constants.PIVOT_I;
+    pivotConfig.Slot0.kP = Constants.PIVOT_D;
+    pivotMotor = new TalonFXS(Constants.PIVOT_MOTOR_ID);
+    angle = pivotMotor.getPosition();
+
+    angle.setUpdateFrequency(100);
   }
 
   public void pivotCommand(double angle) {
-    pivotMotor.setVoltage(pidController.calculate(angle));
+    pivotMotor.setControl(requestVoltage.withPosition(angle));
 
   }
 
