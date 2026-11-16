@@ -4,11 +4,14 @@
 
 package frc.robot.subsystems;
 
-//import com.ctre.phoenix6.BaseStatusSignal;
-//import com.ctre.phoenix6.StatusSignal;
-//import com.ctre.phoenix6.hardware.TalonFX;
-//import edu.wpi.first.units.measure.Current;
-import edu.wpi.first.wpilibj.motorcontrol.PWMTalonFX;
+import com.ctre.phoenix6.BaseStatusSignal;
+import com.ctre.phoenix6.StatusSignal;
+import com.ctre.phoenix6.hardware.TalonFXS;
+import edu.wpi.first.units.measure.Current;
+// import com.ctre.phoenix6.BaseStatusSignal;
+// import com.ctre.phoenix6.StatusSignal;
+// import com.ctre.phoenix6.hardware.TalonFX;
+// import edu.wpi.first.units.measure.Current;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.Constants;
 
@@ -17,17 +20,16 @@ import frc.robot.Constants;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class IntakeSubsystem extends InstantCommand {
   // Make motors, create status signal objects for stator current
-  private PWMTalonFX intakeMotor;
-  private double intakeStatorCurrent;
-
+  private TalonFXS intakeMotor;
+  private StatusSignal<Current> intakeStatorCurrent;
 
   public IntakeSubsystem() {
     // Add configs for motors, configure stator current status signals
-    intakeMotor = new PWMTalonFX(Constants.INTAKE_MOTOR_ID); // Replace num with motor id
+    intakeMotor = new TalonFXS(Constants.INTAKE_MOTOR_ID); // Replace num with motor id
     intakeStatorCurrent =
         intakeMotor
-            .getVoltage(); // Use addRequirements() here to declare subsystem dependencies.
-    // BaseStatusSignal.setUpdateFrequencyForAll(Constants.RIO_SIGNAL_FREQUENCY, intakeStatorCurrent);
+            .getStatorCurrent(); // Use addRequirements() here to declare subsystem dependencies.
+    BaseStatusSignal.setUpdateFrequencyForAll(Constants.RIO_SIGNAL_FREQUENCY, intakeStatorCurrent);
     // intakeMotorOne.optimizeBusUtilization();
     // set a value of hertz to get the stator current(higher = faster)
 
@@ -35,13 +37,14 @@ public class IntakeSubsystem extends InstantCommand {
 
   // Called when the command is initially scheduled.
   // update input, all update methods (intake in and intake out(shoot))
-  // public void updateInputs() {
-  //   intakeStatorCurrent.refresh();
-  // }
+  public void updateInputs() {
+    intakeStatorCurrent.refresh();
+  }
 
   public void setIntakeSpeed(double speed) {
+    updateInputs();
     intakeMotor.set(speed);
-    if (intakeStatorCurrent > Constants.INTAKE_STATOR_LIMIT) {
+    if (intakeStatorCurrent.getValueAsDouble() > Constants.INTAKE_STATOR_LIMIT) {
       intakeMotor.set(0);
     }
   }

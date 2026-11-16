@@ -4,16 +4,17 @@
 
 package frc.robot.commands;
 
-
-//import java.util.function.DoubleSupplier;
-import frc.robot.subsystems.PivotSubsystem;
+// import java.util.function.DoubleSupplier;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.PivotSubsystem;
 
 /** An example command that uses an example subsystem. */
 public class PivotCommand extends Command {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final PivotSubsystem subsystem;
+
   double position;
+
   /**
    * Creates a new ExampleCommand.
    *
