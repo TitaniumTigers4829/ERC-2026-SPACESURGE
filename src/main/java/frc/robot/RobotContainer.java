@@ -9,8 +9,10 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.IntakeCommand;
+import frc.robot.commands.PivotCommand;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.PivotSubsystem;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -20,6 +22,7 @@ import frc.robot.subsystems.IntakeSubsystem;
  */
 public class RobotContainer {
   public final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+  public final PivotSubsystem pivotSubsystem = new PivotSubsystem();
   private final CommandXboxController driverController = new CommandXboxController(0);
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem driveSubsystem = new DriveSubsystem();
@@ -45,6 +48,9 @@ public class RobotContainer {
     Command driveCommand =
         new DriveCommand(driveSubsystem, driverController::getLeftX, driverController::getRightY);
     driveSubsystem.setDefaultCommand(driveCommand);
+    driverController.povUp().whileTrue(new PivotCommand(pivotSubsystem, Math.PI/2));
+    driverController.povDown().whileTrue(new PivotCommand(pivotSubsystem, 0));
+    
   }
 
   /**

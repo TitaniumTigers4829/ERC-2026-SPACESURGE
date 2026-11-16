@@ -5,11 +5,14 @@
 package frc.robot.subsystems;
 
 
+
+
 import com.ctre.phoenix6.StatusSignal;
 import com.ctre.phoenix6.configs.TalonFXSConfiguration;
 import com.ctre.phoenix6.controls.MotionMagicVoltage;
 import com.ctre.phoenix6.hardware.TalonFXS;
 import edu.wpi.first.units.measure.Angle;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -33,9 +36,10 @@ public class PivotSubsystem extends SubsystemBase {
     angle.setUpdateFrequency(100);
   }
 
-  public void pivotCommand(double angle) {
-    pivotMotor.setControl(requestVoltage.withPosition(angle));
-
+  public void pivotCommand(double targetAngle) {
+    pivotMotor.setControl(requestVoltage.withPosition(targetAngle));
+    SmartDashboard.putNumber("Pivot Angle", angle.getValueAsDouble());
+    SmartDashboard.putNumber("Target Angle", targetAngle);
   }
 
   
