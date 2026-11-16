@@ -23,6 +23,7 @@ public class IntakeSubsystem extends InstantCommand {
   private TalonFXS intakeMotor;
   private StatusSignal<Current> intakeStatorCurrent;
 
+  //fixed name
   public IntakeSubsystem() {
     // Add configs for motors, configure stator current status signals
     intakeMotor = new TalonFXS(Constants.INTAKE_MOTOR_ID); // Replace num with motor id
