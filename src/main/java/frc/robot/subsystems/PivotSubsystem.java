@@ -8,9 +8,12 @@ package frc.robot.subsystems;
 
 
 import com.ctre.phoenix6.StatusSignal;
+import com.ctre.phoenix6.configs.CANcoderConfiguration;
 import com.ctre.phoenix6.configs.TalonFXSConfiguration;
 import com.ctre.phoenix6.controls.MotionMagicVoltage;
 import com.ctre.phoenix6.hardware.TalonFXS;
+import com.ctre.phoenix6.signals.SensorDirectionValue;
+
 import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -27,7 +30,13 @@ public class PivotSubsystem extends SubsystemBase {
   public StatusSignal<Angle> angle;
   public TalonFXSConfiguration pivotConfig;
 
+  public CANcoderConfiguration encoderConfig;
+
   public PivotSubsystem() {
+    encoderConfig.MagnetSensor.MagnetOffset = 0;
+    encoderConfig.MagnetSensor.SensorDirection = SensorDirectionValue.CounterClockwise_Positive;
+    pivotConfig.SoftwareLimitSwitch.ForwardSoftLimitThreshold = Math.PI/2;
+    pivotConfig.SoftwareLimitSwitch.ReverseSoftLimitThreshold = 0;
     pivotConfig.Slot0.kP = Constants.PIVOT_P;
     pivotConfig.Slot0.kP = Constants.PIVOT_I;
     pivotConfig.Slot0.kP = Constants.PIVOT_D;
