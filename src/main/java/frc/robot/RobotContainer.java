@@ -49,7 +49,7 @@ public class RobotContainer {
     Command driveCommand =
         new DriveCommand(driveSubsystem, driverController::getLeftX, driverController::getRightY);
     driveSubsystem.setDefaultCommand(driveCommand);
-    driverController.povUp().whileTrue(new PivotCommand(pivotSubsystem, Math.PI/2));
+    driverController.povUp().whileTrue(new PivotCommand(pivotSubsystem, Math.PI/3));
     driverController.povDown().whileTrue(new PivotCommand(pivotSubsystem, 0));
     
     driverController.x().whileTrue(new ShootCommand());
