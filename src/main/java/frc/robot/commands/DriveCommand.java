@@ -13,8 +13,8 @@ public class DriveCommand extends Command {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DriveSubsystem subsystem;
 
-  DoubleSupplier leftDoubleSupplier;
-  DoubleSupplier rightDoubleSupplier;
+  private final DoubleSupplier leftSpeed;
+  private final DoubleSupplier rightSpeed;
 
   /**
    * Creates a new ExampleCommand.
@@ -22,10 +22,10 @@ public class DriveCommand extends Command {
    * @param subsystem The subsystem used by this command.
    */
   public DriveCommand(
-      DriveSubsystem subsystem, DoubleSupplier leftJoystickX, DoubleSupplier rightJoystickY) {
+      DriveSubsystem subsystem, DoubleSupplier leftSpeed, DoubleSupplier rightSpeed) {
     this.subsystem = subsystem;
-    this.leftDoubleSupplier = leftJoystickX;
-    this.rightDoubleSupplier = rightJoystickY;
+    this.leftSpeed = leftSpeed;
+    this.rightSpeed = rightSpeed;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
@@ -37,7 +37,7 @@ public class DriveCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    subsystem.Drive(leftDoubleSupplier.getAsDouble(), rightDoubleSupplier.getAsDouble());
+    subsystem.Drive(leftSpeed.getAsDouble(), rightSpeed.getAsDouble());
   }
 
   // Called once the command ends or is interrupted.

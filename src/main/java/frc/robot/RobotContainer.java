@@ -47,7 +47,8 @@ public class RobotContainer {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
     driverController.rightBumper().whileTrue(new IntakeCommand());
     Command driveCommand =
-        new DriveCommand(driveSubsystem, driverController::getLeftX, driverController::getRightY);
+        new DriveCommand(
+            driveSubsystem, () -> -driverController.getLeftY(), () -> -driverController.getRightY());
     driveSubsystem.setDefaultCommand(driveCommand);
     driverController.povUp().whileTrue(new PivotCommand(pivotSubsystem, Math.PI/2));
     driverController.povDown().whileTrue(new PivotCommand(pivotSubsystem, 0));

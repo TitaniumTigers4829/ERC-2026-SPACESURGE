@@ -23,7 +23,7 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void Drive(double leftSpeed, double rightSpeed) {
-    tankDrive.arcadeDrive(leftSpeed, rightSpeed, true);
+    tankDrive.tankDrive(leftSpeed, rightSpeed, true);
   }
 
   @Override
